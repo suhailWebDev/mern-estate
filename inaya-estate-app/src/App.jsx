@@ -7,6 +7,7 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from './Components/Navbar'
 import Signin from './Components/Signin'
+import Signup from './Components/Signup'
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path='/about' element={<About/>}/>
           <Route path='/signin' element={<Signin/>}/>
           <Route path='/profile' element={<Profile/>}/>
+          <Route path='/signup' element={<Signup/>}/>
         </Routes>
       </BrowserRouter>
     </>

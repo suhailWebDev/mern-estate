@@ -1,7 +1,7 @@
 *{
   margin: 0;
   padding: 0;
-  font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .main {
@@ -112,4 +112,66 @@
 
 .nav-link img {
   display: block; /* Ensures the avatar appears as a block for consistency */
+}
+
+.partners-slider {
+  display: flex;
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+  width: 100%;
+}
+
+.partners-track {
+  display: flex;
+  animation: scroll 10s linear infinite;
+}
+
+.partner-logo {
+  height: 60px;
+  margin: 0 30px;
+  object-fit: contain;
+}
+
+/* Animation */
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+
+.core-value-card {
+  background: #fff;
+  border-radius: 10px;
+  transition: all 0.3s ease-in-out;
+}
+
+.core-value-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.icon-core {
+  font-size: 2rem;
+  color: #b57b50; /* Custom goldish-brown theme color */
+}
+
+.difference-card {
+  background: #fff;
+  border-radius: 10px;
+  transition: all 0.3s ease-in-out;
+}
+
+.difference-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.icon-diff {
+  font-size: 2rem;
+  color: #b57b50; /* Custom goldish-brown theme color */
 }

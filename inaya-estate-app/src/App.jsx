@@ -8,6 +8,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from './Components/Navbar'
 import Signin from './Components/Signin'
 import Signup from './Components/Signup'
+import Services from './Components/Services'
+import Footer from './Components/Footer'
+import CommunityDetails from './Components/CommunityDetails'
+import Communities from './Components/Communities'
+import Blogs from './Components/Blogs'
+import BlogDetails from './Components/BlogDetails'
 
 function App() {
   return (
@@ -17,10 +23,15 @@ function App() {
         <Routes>
           <Route path='/' element={<Home/>}/>
           <Route path='/about' element={<About/>}/>
+          <Route path='/services' element={<Services/>}/>
           <Route path='/signin' element={<Signin/>}/>
           <Route path='/profile' element={<Profile/>}/>
           <Route path='/signup' element={<Signup/>}/>
+          <Route path="/community/:id" element={<CommunityDetails />} />
+          <Route path="/blogs" element={<Blogs />} />
+        <Route path="/blog/:id" element={<BlogDetails />} />
         </Routes>
+        <Footer/>
       </BrowserRouter>
     </>
   )

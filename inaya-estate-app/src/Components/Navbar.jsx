@@ -1,5 +1,4 @@
 import React from 'react';
-import avatar from '../Images/ad3bf027-e85b-4cad-ab5f-80a25e37f4cb.jpg';
 import { NavLink } from 'react-router-dom';
 
 function Navbar() {
@@ -10,7 +9,7 @@ function Navbar() {
         <NavLink
           className="navbar-brand"
           to="/"
-          style={{ color: '#3498db', fontWeight: 'bold' }}
+          style={{ color: '#3498db', fontWeight: 'bold', fontSize: '1.5rem' }}
         >
           InayaRealty
         </NavLink>
@@ -28,56 +27,62 @@ function Navbar() {
           <span className="navbar-toggler-icon"></span>
         </button>
 
-        {/* Center & Right Side - Links, Search Bar, and Avatar */}
+        {/* Navigation Items */}
         <div className="collapse navbar-collapse" id="navbarNav">
-          {/* Center - Search Bar */}
-          <form className="d-flex mx-lg-auto my-2 my-lg-0" style={{ width: '50%' }}>
-            <input
-              className="form-control me-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button className="btn btn-outline-primary" type="submit">
-              Search
-            </button>
-          </form>
+          <div className="w-100 d-flex flex-column flex-lg-row align-items-center">
+            {/* Search Bar */}
+            <form className="search-bar d-flex mb-2 mb-lg-0 mx-lg-auto">
+              <input
+                className="form-control"
+                type="search"
+                placeholder="Search"
+                aria-label="Search"
+              />
+              <button className="btn btn-outline-primary ms-2" type="submit">
+                Search
+              </button>
+            </form>
 
-          {/* Right Side - Navigation Links and Avatar */}
-          <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-            <li className="nav-item">
-              <NavLink to="/" className="nav-link" aria-current="page">
-                Home
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink to="/about" className="nav-link">
-                About
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink to="/signin" className="nav-link">
-                Sign In
-              </NavLink>
-            </li>
-            {/* <li className="nav-item">
-              <NavLink to="/profile" className="nav-link">
-                Profile
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink to="/profile" className="nav-link">
-                <img
-                  src={avatar}
-                  alt="avatar"
-                  className="rounded-circle"
-                  style={{ width: '30px', height: '30px' }}
-                />
-              </NavLink>
-            </li> */}
-          </ul>
+            {/* Navigation Links */}
+            <ul className="navbar-nav ms-lg-auto text-center">
+              <li className="nav-item">
+                <NavLink to="/" className="nav-link">
+                  Home
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink to="/about" className="nav-link">
+                  About
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink to="/services" className="nav-link">
+                  Services
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink to="/signin" className="nav-link">
+                  Sign In
+                </NavLink>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
+
+      {/* Styles */}
+      <style jsx>{`
+        .search-bar {
+          width: 100%;
+          max-width: 500px; /* Limits width on larger screens */
+        }
+
+        @media (max-width: 991px) {
+          .search-bar {
+            width: 90%; /* Wider on smaller screens for better usability */
+          }
+        }
+      `}</style>
     </nav>
   );
 }

@@ -50,7 +50,10 @@ const blogs = [
 
 const Blogs = () => {
   return (
-    <div className="blogs-section">
+    <div className="blogs-section" style={{
+      background: "linear-gradient(135deg, #E0F7FA, #B2EBF2)",
+      minHeight: "100vh",
+    }}>
       <div className="container">
         <h1 className="text-center fw-bold">Latest Real Estate Insights</h1>
         <p className="text-center mb-4">Stay updated with Dubai’s real estate market trends.</p>

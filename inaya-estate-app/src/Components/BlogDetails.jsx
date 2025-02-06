@@ -85,7 +85,10 @@ const BlogDetails = () => {
   }
 
   return (
-    <div className="blog-detail-section">
+    <div className="blog-detail-section" style={{
+      background: "linear-gradient(135deg, #E0F7FA, #B2EBF2)",
+      minHeight: "100vh",
+    }}>
       <div className="container">
         <h1 className="text-center fw-bold">{blog.title}</h1>
         <img src={blog.image} alt={blog.title} className="img-fluid detail-img" />

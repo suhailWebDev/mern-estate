@@ -222,7 +222,7 @@
   background-color: #0056b3;
 }
 
-.communities-container {
+/* .communities-container {
   text-align: center;
   padding: 60px 20px;
   background: #f8f9fa;
@@ -284,7 +284,7 @@
 
 .community-card:hover .overlay {
   opacity: 1;
-}
+} */
 
 .community-details {
   text-align: center;

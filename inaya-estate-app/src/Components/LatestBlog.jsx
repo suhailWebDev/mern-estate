@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 // Sample blogs with images
 import blogImage1 from '../Images/abu-dhabi-seascape-with-skyscrapers.jpg';
@@ -14,44 +15,101 @@ const blogs = [
   { id: 'waterfront-communities', title: 'Best Waterfront Communities in Dubai: Where Luxury Meets Sea', image: blogImage4 },
 ];
 
+// Animation variants
+const fadeIn = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
+};
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { staggerChildren: 0.2 } },
+};
+
 const LatestBlog = () => {
-    return (
-        <div className="container my-5">
-          <div className="d-flex justify-content-between align-items-center mb-3">
-            <h2 className="fw-bold">Latest Blogs</h2>
-            <Link to="/blogs" className="btn btn-outline-dark">View All →</Link>
-          </div>
-          
-          <div className="row">
-            {/* Main Featured Blog */}
-            <div className="col-lg-8 mb-3">
-            <Link to={`/blog/${blogs[0].id}`}>
-              <div className="position-relative">
-                <img src={blogs[0].image} alt={blogs[0].title} className="img-fluid w-100 rounded" />
-                <div className="position-absolute bottom-0 bg-white p-3 w-100" style={{ opacity: 0.9 }}>
-                  <h4>{blogs[0].title}</h4>
-                  <small className="text-muted">📅 {blogs[0].date}</small>
-                </div>
-              </div>
+  return (
+    <div className="container-fluid" style={{
+      background: "linear-gradient(135deg, #E0F7FA, #B2EBF2)",
+      minHeight: "100vh",
+      padding: "50px 20px",
+    }}>
+      {/* Section Header */}
+      <motion.div 
+        className="d-flex justify-content-between align-items-center mb-4"
+        variants={fadeIn}
+        initial="hidden"
+        whileInView="visible"
+      >
+        <h2 className="fw-bold">Latest Blogs</h2>
+        <Link to="/blogs">
+          <motion.button 
+            className="btn btn-outline-dark"
+            variants={fadeIn}
+          >
+            View All →
+          </motion.button>
+        </Link>
+      </motion.div>
+
+      <motion.div 
+        className="row"
+        variants={staggerContainer}
+        initial="hidden"
+        whileInView="visible"
+      >
+        {/* Featured Blog (Larger) */}
+        <motion.div 
+          className="col-lg-8 mb-4"
+          variants={fadeIn}
+        >
+          <Link to={`/blog/${blogs[0].id}`} className="position-relative d-block">
+            <motion.img 
+              src={blogs[0].image} 
+              alt={blogs[0].title} 
+              className="img-fluid w-100 rounded shadow"
+              style={{ height: "400px", objectFit: "cover" }} // Adjusted height & object-fit
+              variants={fadeIn}
+              whileHover={{ scale: 1.03 }}
+            />
+            <div 
+              className="position-absolute text-white px-3 py-2"
+              style={{
+                bottom: "15px", left: "15px", 
+                background: "rgba(0, 0, 0, 0.6)", 
+                borderRadius: "5px"
+              }}
+            >
+              <h4 className="m-0">{blogs[0].title}</h4>
+            </div>
+          </Link>
+        </motion.div>
+
+        {/* Sidebar Blogs (Smaller) */}
+        <motion.div 
+          className="col-lg-4"
+          variants={staggerContainer}
+        >
+          {blogs.slice(1).map((blog) => (
+            <motion.div 
+              key={blog.id} 
+              className="d-flex mb-3"
+              variants={fadeIn}
+            >
+              <Link to={`/blog/${blog.id}`} className="d-flex align-items-center">
+                <motion.img 
+                  src={blog.image} 
+                  alt={blog.title} 
+                  className="img-fluid rounded me-3 shadow"
+                  style={{ width: '120px', height: '80px', objectFit: 'cover' }}
+                  whileHover={{ scale: 1.05 }}
+                />
+                <h6 className="mb-1">{blog.title}</h6>
               </Link>
-            </div>
-            
-            {/* Sidebar Blogs */}
-            <div className="col-lg-4">
-              {blogs.slice(1).map((blog) => (
-                <Link to={`/blog/${blog.id}`}>
-                <div key={blog.id} className="d-flex mb-3">
-                  <img src={blog.image} alt={blog.title} className="img-fluid rounded me-3" style={{ width: '100px', height: '70px' }} />
-                  <div>
-                    <h6 className="mb-1">{blog.title}</h6>
-                    <small className="text-muted">📅 {blog.date}</small>
-                  </div>
-                </div>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </div>
+            </motion.div>
+          ))}
+        </motion.div>
+      </motion.div>
+    </div>
   );
 };
 

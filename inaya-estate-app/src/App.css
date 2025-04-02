@@ -399,3 +399,95 @@
   margin-bottom: 20px;
   padding: 0 15px;
 }
+
+/* Fix overlay issue */
+.pre-register-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Modal Box */
+.pre-register-modal {
+  background: white;
+  padding: 20px;
+  width: 400px;
+  border-radius: 10px;
+  position: relative;
+  text-align: center;
+  max-width: 90%;
+}
+
+.modal-title {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.modal-subtitle {
+  color: #a67b5b;
+  margin-bottom: 15px;
+}
+
+/* Input Fields */
+input, textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #a67b5b;
+  border-radius: 5px;
+}
+
+textarea {
+  height: 80px;
+}
+
+/* Submit Button */
+.submit-btn {
+  background: black;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.submit-btn:hover {
+  background: #333;
+}
+
+/* Close Button */
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+/* Mobile Responsive */
+@media (max-width: 500px) {
+  .pre-register-modal {
+    width: 90%;
+    padding: 15px;
+  }
+
+  .modal-title {
+    font-size: 18px;
+  }
+
+  .submit-btn {
+    font-size: 14px;
+  }
+}

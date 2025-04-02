@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import OAuth from "./OAuth";
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -67,9 +68,6 @@ const Signup = () => {
     setLoading(false); // Remove loading effect and enable button
   };
 
-  const handleGoogleSignIn = () => {
-    console.log("Google Sign-In Clicked");
-  };
 
   return (
     <div className="container-fluid d-flex justify-content-center align-items-center vh-100 bg-light">
@@ -154,10 +152,7 @@ const Signup = () => {
 
         <hr />
 
-        {/* Google Sign In */}
-        <button className="btn btn-danger w-100" onClick={handleGoogleSignIn} disabled={loading}>
-          <i className="bi bi-google me-2"></i> Continue with Google
-        </button>
+     
 
         {/* Sign In Link */}
         <p className="text-center mt-3">

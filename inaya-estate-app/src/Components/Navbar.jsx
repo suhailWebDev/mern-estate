@@ -1,7 +1,23 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from "react-redux";
+import { signOut } from '../redux/user/userSlice.js';
 
 function Navbar() {
+  const { currentUser } = useSelector(state => state.user);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleSignOut = async () => {
+    try {
+      await fetch("/api/auth/signout", { method: "GET" }); // Call API to clear cookies
+      dispatch(signOut()); // Update Redux store
+      navigate("/signin"); // Redirect to sign-in page
+    } catch (error) {
+      console.error("Error signing out:", error);
+    }
+  };
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
       <div className="container">
@@ -46,25 +62,30 @@ function Navbar() {
             {/* Navigation Links */}
             <ul className="navbar-nav ms-lg-auto text-center">
               <li className="nav-item">
-                <NavLink to="/" className="nav-link">
-                  Home
-                </NavLink>
+                <NavLink to="/" className="nav-link">Home</NavLink>
               </li>
               <li className="nav-item">
-                <NavLink to="/about" className="nav-link">
-                  About
-                </NavLink>
+                <NavLink to="/about" className="nav-link">About</NavLink>
               </li>
               <li className="nav-item">
-                <NavLink to="/services" className="nav-link">
-                  Services
-                </NavLink>
+                <NavLink to="/services" className="nav-link">Services</NavLink>
               </li>
-              <li className="nav-item">
-                <NavLink to="/signin" className="nav-link">
-                  Sign In
-                </NavLink>
-              </li>
+
+              {/* Show Sign In or Profile Based on Authentication */}
+              {currentUser ? (
+                <>
+                  <li className="nav-item">
+                  <NavLink to="/createlisting"><button className="btn btn-success">Create Listing</button></NavLink>
+                  </li>
+                  <li className="nav-item">
+                    <button className="btn btn-danger" onClick={handleSignOut}>Sign Out</button>
+                  </li>
+                </>
+              ) : (
+                <li className="nav-item">
+                  <NavLink to="/signin" className="nav-link">Sign In</NavLink>
+                </li>
+              )}
             </ul>
           </div>
         </div>

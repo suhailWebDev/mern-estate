@@ -14,6 +14,8 @@ import CommunityDetails from './Components/CommunityDetails'
 import Communities from './Components/Communities'
 import Blogs from './Components/Blogs'
 import BlogDetails from './Components/BlogDetails'
+import CreateListing from './Components/CreateListing'
+import PropertyDetails from './Components/PropertyDetails'
 
 function App() {
   return (
@@ -29,7 +31,9 @@ function App() {
           <Route path='/signup' element={<Signup/>}/>
           <Route path="/community/:id" element={<CommunityDetails />} />
           <Route path="/blogs" element={<Blogs />} />
+          <Route path="/createlisting" element={<CreateListing  />} />
         <Route path="/blog/:id" element={<BlogDetails />} />
+        <Route path="/property/:id" element={<PropertyDetails />} />
         </Routes>
         <Footer/>
       </BrowserRouter>

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { signInStart, signInSuccess, signInFailure } from "../redux/user/userSlice"; // Adjust path if needed
+import OAuth from "./OAuth";
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -64,9 +65,6 @@ const Signup = () => {
     }
   };
 
-  const handleGoogleSignIn = () => {
-    console.log("Google Sign-In Clicked");
-  };
 
   return (
     <div className="container-fluid d-flex justify-content-center align-items-center vh-100 bg-light">
@@ -128,11 +126,6 @@ const Signup = () => {
         </form>
 
         <hr />
-
-        {/* Google Sign In */}
-        <button className="btn btn-danger w-100" onClick={handleGoogleSignIn} disabled={loading}>
-          <i className="bi bi-google me-2"></i> Continue with Google
-        </button>
 
         {/* Sign Up Link */}
         <p className="text-center mt-3">

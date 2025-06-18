@@ -16,6 +16,7 @@ import Blogs from './Components/Blogs'
 import BlogDetails from './Components/BlogDetails'
 import CreateListing from './Components/CreateListing'
 import PropertyDetails from './Components/PropertyDetails'
+import EditProperty from './Components/EditProperty'
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
           <Route path="/createlisting" element={<CreateListing  />} />
         <Route path="/blog/:id" element={<BlogDetails />} />
         <Route path="/property/:id" element={<PropertyDetails />} />
+        <Route path="/edit-property/:id" element={<EditProperty />} />
         </Routes>
         <Footer/>
       </BrowserRouter>

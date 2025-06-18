@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { motion } from "framer-motion";
 import 'react-lazy-load-image-component/src/effects/blur.css'; // Optional blur effect
@@ -12,8 +12,10 @@ import legalAdvisoryImg from '../Images/breakup-marriage-couple-with-divorce-cer
 import valuationAppraisalImg from '../Images/4265003.jpg';
 import holidayHomesImg from "../Images/swimming-pool-beach-luxury-hotel-type-entertainment-complex-amara-dolce-vita-luxury-hotel-resort-tekirova-kemer-turkey.jpg"; // New Holiday Homes image
 import conciergeRelocationImg from "../Images/young-couple-moving-new-home-together-african-american-couple-with-cardboard-boxes.jpg";
+import PreRegisterModal from './PreRegisterModal';
 
 const Services = () => {
+  const [modalOpen, setModalOpen] = useState(false);
   return (
     <div className="services-section">
       <div className="container py-5">
@@ -42,11 +44,12 @@ const Services = () => {
                     <li key={i}>{item}</li>
                   ))}
                 </ul>
-                <a href="#!" className="btn-gradient">Learn More</a>
+                <button  onClick={() => setModalOpen(true)} className="btn-gradient">Learn More</button>
               </div>
             </div>
           </div>
         ))}
+        <PreRegisterModal isOpen={modalOpen} onRequestClose={() => setModalOpen(false)} />
       </div>
 
       {/* Modern Styles */}

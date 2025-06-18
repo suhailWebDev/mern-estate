@@ -46,18 +46,7 @@ function Navbar() {
         {/* Navigation Items */}
         <div className="collapse navbar-collapse" id="navbarNav">
           <div className="w-100 d-flex flex-column flex-lg-row align-items-center">
-            {/* Search Bar */}
-            <form className="search-bar d-flex mb-2 mb-lg-0 mx-lg-auto">
-              <input
-                className="form-control"
-                type="search"
-                placeholder="Search"
-                aria-label="Search"
-              />
-              <button className="btn btn-outline-primary ms-2" type="submit">
-                Search
-              </button>
-            </form>
+          
 
             {/* Navigation Links */}
             <ul className="navbar-nav ms-lg-auto text-center">
@@ -83,7 +72,7 @@ function Navbar() {
                 </>
               ) : (
                 <li className="nav-item">
-                  <NavLink to="/signin" className="nav-link">Sign In</NavLink>
+                  <NavLink to="/signin" className="nav-link">Admin</NavLink>
                 </li>
               )}
             </ul>

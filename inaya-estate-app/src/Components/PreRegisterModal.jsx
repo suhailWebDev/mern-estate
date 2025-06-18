@@ -3,7 +3,6 @@ import Modal from "react-modal";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 
-
 Modal.setAppElement("#root");
 
 const PreRegisterModal = ({ isOpen, onRequestClose }) => {
@@ -14,6 +13,8 @@ const PreRegisterModal = ({ isOpen, onRequestClose }) => {
     message: "",
   });
 
+  const [loading, setLoading] = useState(false); // Loading state
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -22,10 +23,33 @@ const PreRegisterModal = ({ isOpen, onRequestClose }) => {
     setFormData({ ...formData, phone });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form Submitted:", formData);
-    onRequestClose(); // Close modal after submission
+    setLoading(true);
+
+    try {
+      const response = await fetch("/api/send-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+      if (response.ok) {
+        alert("Your request has been sent successfully!");
+        setFormData({ name: "", email: "", phone: "", message: "" }); // Reset form
+        onRequestClose(); // Close modal
+      } else {
+        alert("Error sending request. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      alert("Something went wrong.");
+    }
+
+    setLoading(false);
   };
 
   return (
@@ -74,8 +98,8 @@ const PreRegisterModal = ({ isOpen, onRequestClose }) => {
             onChange={handleChange}
           />
 
-          <button type="submit" className="submit-btn">
-            Submit <span>❓</span>
+          <button type="submit" className="submit-btn" disabled={loading}>
+            {loading ? "Submitting..." : "Submit"}
           </button>
         </form>
       </div>

@@ -1,6 +1,6 @@
 import React from "react";
 import { FaFacebookF, FaInstagram, FaLinkedinIn, FaPhoneAlt } from "react-icons/fa";
-import { Link } from "react-router-dom"; // Assuming you're using React Router
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -18,9 +18,9 @@ const Footer = () => {
 
         <div className="row">
           {/* Social Media Icons */}
-          <div className="col-md-4 text-center text-md-start mb-3">
-            <h5 className="text-white fw-bold">Follow Us</h5>
-            <div className="social-icons">
+          <div className="col-md-4 text-center text-md-end mb-3">
+            <h5 className="text-white text-center fw-bold">Follow Us</h5>
+            <div className="social-icons justify-md-center">
               <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="social-link">
                 <FaInstagram />
               </a>
@@ -37,12 +37,12 @@ const Footer = () => {
           <div className="col-md-4 text-center mb-3">
             <h5 className="text-white fw-bold">Get in Touch</h5>
             <p className="contact-info">
-              <FaPhoneAlt className="me-2" /> +971 123 456 789
+              <FaPhoneAlt className="me-2" /> +91 93056 11089
             </p>
           </div>
 
           {/* Quick Links */}
-          <div className="col-md-4 text-center text-md-end">
+          <div className="col-md-4 text-center text-md-start">
             <h5 className="text-white fw-bold">Quick Links</h5>
             <ul className="quick-links">
               <li><Link to="/">Home</Link></li>
@@ -82,6 +82,11 @@ const Footer = () => {
           display: flex;
           justify-content: center;
           gap: 20px;
+        }
+        @media (min-width: 768px) {
+          .social-icons.justify-md-end {
+            justify-content: flex-end;
+          }
         }
         .social-link {
           color: white;

@@ -7,7 +7,7 @@ import listingRouter from './routes/listing.route.js';
 import uploadRouter from './routes/upload.route.js';
 import Listing from './models/listing.model.js';
 import path from "path";
-import cors from "cors";
+import nodemailer from "nodemailer";
 
 dotenv.config();
 
@@ -53,6 +53,41 @@ app.get("/api/listings/:id", async (req, res) => {
     res.json(listing);
   } catch (error) {
     res.status(500).json({ message: "Server error" });
+  }
+});
+
+app.post("/api/send-email", async (req, res) => {
+  const { name, email, phone, message } = req.body;
+
+  // Nodemailer transporter
+  const transporter = nodemailer.createTransport({
+    service: "gmail", // You can use other services like Outlook, Zoho, etc.
+    auth: {
+      user: process.env.ADMIN_EMAIL, // Admin email
+      pass: process.env.ADMIN_PASSWORD, // App password (not personal password)
+    },
+  });
+
+  // Email content
+  const mailOptions = {
+    from: process.env.ADMIN_EMAIL,
+    to: process.env.ADMIN_EMAIL, // Send to the admin
+    subject: "New Pre-Register Form Submission",
+    html: `
+      <h2>New Pre-Register Submission</h2>
+      <p><strong>Name:</strong> ${name}</p>
+      <p><strong>Email:</strong> ${email}</p>
+      <p><strong>Phone:</strong> ${phone}</p>
+      <p><strong>Message:</strong> ${message}</p>
+    `,
+  };
+
+  try {
+    await transporter.sendMail(mailOptions);
+    res.status(200).json({ message: "Email sent successfully!" });
+  } catch (error) {
+    console.error("Error sending email:", error);
+    res.status(500).json({ error: "Error sending email" });
   }
 });
 

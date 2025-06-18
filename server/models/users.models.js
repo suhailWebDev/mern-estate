@@ -16,11 +16,6 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    avatar: {
-      type: String,
-      default:
-        "https://img.freepik.com/premium-vector/avatar-profile-icon-flat-style_157943-38764.jpg",
-    },
   },
   { timestamps: true }
 );

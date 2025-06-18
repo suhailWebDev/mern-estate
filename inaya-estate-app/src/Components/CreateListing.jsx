@@ -69,7 +69,6 @@ const CreateListing = () => {
     }
   };
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -104,13 +103,14 @@ const CreateListing = () => {
   };
 
   return (
-    <div className="container mt-5 p-2">
-      <h2 className="text-center mb-4">Create a Listing</h2>
+    <div className="container mt-5 p-4 bg-light shadow rounded">
+      <h2 className="text-center mb-4 text-primary fw-bold">Create a Listing</h2>
       <form onSubmit={handleSubmit}>
         <div className="row">
+          {/* Left Side Inputs */}
           <div className="col-md-6">
             <div className="mb-3">
-              <input type="text" className="form-control" placeholder="Name" name="name" value={formData.name} onChange={handleChange} required />
+              <input type="text" className="form-control" placeholder="Property Name" name="name" value={formData.name} onChange={handleChange} required />
             </div>
 
             <div className="mb-3">
@@ -121,21 +121,36 @@ const CreateListing = () => {
               <input type="text" className="form-control" placeholder="Address" name="address" value={formData.address} onChange={handleChange} required />
             </div>
 
-            <div className="mb-3">
-              <label className="me-2">Type:</label>
-              <input type="radio" name="type" value="sell" checked={formData.type === "sell"} onChange={handleChange} /> Sell
-              <input type="radio" name="type" value="rent" checked={formData.type === "rent"} onChange={handleChange} className="ms-3" /> Rent
+            {/* Property Type */}
+            <div className="mb-3 d-flex align-items-center">
+              <label className="me-3 fw-bold">Type:</label>
+              <div className="form-check form-check-inline">
+                <input type="radio" className="form-check-input" name="type" value="sell" checked={formData.type === "sell"} onChange={handleChange} />
+                <label className="form-check-label">Sell</label>
+              </div>
+              <div className="form-check form-check-inline">
+                <input type="radio" className="form-check-input" name="type" value="rent" checked={formData.type === "rent"} onChange={handleChange} />
+                <label className="form-check-label">Rent</label>
+              </div>
             </div>
 
+            {/* Features */}
             <div className="mb-3">
-              <input type="checkbox" name="parking" checked={formData.parking} onChange={handleChange} /> Parking Spot
-              <input type="checkbox" name="furnished" checked={formData.furnished} onChange={handleChange} className="ms-3" /> Furnished
+              <div className="form-check">
+                <input type="checkbox" className="form-check-input" name="parking" checked={formData.parking} onChange={handleChange} />
+                <label className="form-check-label">Parking Spot</label>
+              </div>
+              <div className="form-check">
+                <input type="checkbox" className="form-check-input" name="furnished" checked={formData.furnished} onChange={handleChange} />
+                <label className="form-check-label">Furnished</label>
+              </div>
+              <div className="form-check">
+                <input type="checkbox" className="form-check-input" name="offer" checked={formData.offer} onChange={handleChange} />
+                <label className="form-check-label">Offer Available</label>
+              </div>
             </div>
 
-            <div className="mb-3">
-              <input type="checkbox" name="offer" checked={formData.offer} onChange={handleChange} /> Offer Available
-            </div>
-
+            {/* Pricing */}
             <div className="mb-3">
               <label>Regular Price ($/Month):</label>
               <input type="number" className="form-control" name="regularPrice" value={formData.regularPrice} onChange={handleChange} min="0" />
@@ -149,15 +164,17 @@ const CreateListing = () => {
             )}
           </div>
 
+          {/* Right Side - Image Upload */}
           <div className="col-md-6">
-            <label>Images: The first image will be the cover (max 6)</label>
+            <label className="fw-bold">Images (Max 6, First is Cover)</label>
             <div className="input-group mb-3">
               <input type="file" multiple className="form-control" accept="image/*" onChange={handleFileChange} />
-              <button type="button" onClick={handleImageUpload} className="btn btn-outline-primary">
+              <button type="button" onClick={handleImageUpload} className="btn btn-primary">
                 Upload
               </button>
             </div>
 
+            {/* Image Preview Grid */}
             <div className="row mt-3">
               {imagePreviews.map((imgSrc, index) => (
                 <div key={index} className="col-4 mb-3 position-relative">
@@ -169,7 +186,8 @@ const CreateListing = () => {
               ))}
             </div>
 
-            <button type="submit" className="btn btn-dark w-100">
+            {/* Submit Button */}
+            <button type="submit" className="btn btn-success w-100 mt-3">
               CREATE LISTING
             </button>
           </div>

@@ -128,9 +128,9 @@ const Signup = () => {
         <hr />
 
         {/* Sign Up Link */}
-        <p className="text-center mt-3">
+        {/* <p className="text-center mt-3">
           Don't have an account? <Link to="/signup" className="text-primary">Sign Up</Link>
-        </p>
+        </p> */}
       </div>
     </div>
   );
